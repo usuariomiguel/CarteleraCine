@@ -96,11 +96,7 @@ if ($_POST['yes'] == "yes") {
   <div class="container">
     <span class="text-muted">
     <div>      
-
-
-
-
-      <?php if ($_COOKIE['micookie'] == " ") { ?>
+      <?php if (isset($_COOKIE['micookie'])) { ?>
 
         <input type="submit" name="yes" value="yes">
         <input type="submit" name="no" value="no">
