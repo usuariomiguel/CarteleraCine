@@ -1,17 +1,12 @@
 <?php 
 
-setcookie('micookie', $valor);
+$valor = ".";
 
-if ($_POST['yes'] == "yes") {
-
+if (isset($_POST['aceptar_cookies'])) {
   $valor = "yes";
+} 
 
-} elseif ($_POST['no'] == "no") {
-
-  $valor = "no";
-
-}
-
+setcookie('micookie', $valor);
 
 ?>
 
@@ -86,7 +81,8 @@ if ($_POST['yes'] == "yes") {
 <main class="flex-shrink-0">
   <div class="container">
     <h1 class="mt-5">Sticky footer with fixed navbar</h1>
-    <?php print_r ($_POST); ?>
+    <?php print_r ($_POST); ?><br>
+    <?php echo $_COOKIE["micookie"]  ?>
     <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code class="small">padding-top: 60px;</code> on the <code class="small">main &gt; .container</code>.</p>
     <p>Back to <a href="../examples/sticky-footer/">the default sticky footer</a> minus the navbar.</p>
   </div>
@@ -94,33 +90,26 @@ if ($_POST['yes'] == "yes") {
 
 <footer class="footer mt-auto py-3 bg-light">
   <div class="container">
-    <span class="text-muted">
-    <div>      
-      <?php if (isset($_COOKIE['micookie'])) { ?>
+    <span class="text-muted">  
 
-        <input type="submit" name="yes" value="yes">
-        <input type="submit" name="no" value="no">
-
-      <?php } elseif (isset($_COOKIE['mycookie']) && ($_COOKIE['mycookie'] == "yes")) { ?>
-
-      <?php } else { ?>
+      <?php if ($_COOKIE['micookie'] == "." ) { ?>
         <form method="post" index="src/index.php">
+          <h5>DESEAS ACEPTAR LAS COOKIES?<h5>
+          <input type="submit" name="aceptar_cookies" value="aceptar">
 
-        <p>DESEA ACEPTAR LAS COOKIES
-        <input type="submit" name="yes" value="yes">
-        <input type="submit" name="no" value="no"></p>
+        </form>
 
-      </form>
+        <?php } else { ?>
 
-      <?php } ?>
+          <p><b>Has aceptado las cookies</b></p>
+
+      <?php }?>
 
     </span>
   </div>
 </footer>
 
-
     <script src="js/bootstrap.min.js"></script>
-
       
   </body>
 </html>
