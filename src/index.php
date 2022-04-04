@@ -1,3 +1,20 @@
+<?php 
+
+setcookie('micookie', $valor);
+
+if ($_POST['yes'] == "yes") {
+
+  $valor = "yes";
+
+} elseif ($_POST['no'] == "no") {
+
+  $valor = "no";
+
+}
+
+
+?>
+
 <!doctype html>
 <html lang="en" class="h-100">
   <head>
@@ -69,6 +86,7 @@
 <main class="flex-shrink-0">
   <div class="container">
     <h1 class="mt-5">Sticky footer with fixed navbar</h1>
+    <?php print_r ($_POST); ?>
     <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code class="small">padding-top: 60px;</code> on the <code class="small">main &gt; .container</code>.</p>
     <p>Back to <a href="../examples/sticky-footer/">the default sticky footer</a> minus the navbar.</p>
   </div>
@@ -77,8 +95,29 @@
 <footer class="footer mt-auto py-3 bg-light">
   <div class="container">
     <span class="text-muted">
-      Debes aceptar la política de COOKIES
-      <a class="btn btn-primary" href="index.php?aceptado=1">Acepto</a>
+    <div>      
+
+
+
+
+      <?php if ($_COOKIE['micookie'] == " ") { ?>
+
+        <input type="submit" name="yes" value="yes">
+        <input type="submit" name="no" value="no">
+
+      <?php } elseif (isset($_COOKIE['mycookie']) && ($_COOKIE['mycookie'] == "yes")) { ?>
+
+      <?php } else { ?>
+        <form method="post" index="src/index.php">
+
+        <p>DESEA ACEPTAR LAS COOKIES
+        <input type="submit" name="yes" value="yes">
+        <input type="submit" name="no" value="no"></p>
+
+      </form>
+
+      <?php } ?>
+
     </span>
   </div>
 </footer>
