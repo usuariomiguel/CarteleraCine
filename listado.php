@@ -1,13 +1,12 @@
 <?php 
 
-$mostrar_cookies = true;
+$valor = ".";
 
-if ($_GET['aceptado'] == 1 ) {
+if (isset($_POST['aceptar_cookies'])) {
+  $valor = "yes";
+} 
 
-  setcookie ("acepta_politica","yes");
-  $mostrar_cookies = false;
-
-}
+setcookie('micookie', $valor);
 
 ?>
 
@@ -49,54 +48,41 @@ if ($_GET['aceptado'] == 1 ) {
   </head>
   <body class="d-flex flex-column h-100">
     
-<header>
-  <!-- Fixed navbar -->
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Fixed navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
-    </div>
-  </nav>
-</header>
+<?php include("include_menu.php")?>
 
 <!-- Begin page content -->
 <main class="flex-shrink-0">
   <div class="container">
     <h1 class="mt-5">Sticky footer with fixed navbar</h1>
+    <?php print_r ($_POST); ?><br>
+    <?php echo $_COOKIE["micookie"]  ?>
     <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code class="small">padding-top: 60px;</code> on the <code class="small">main &gt; .container</code>.</p>
     <p>Back to <a href="../examples/sticky-footer/">the default sticky footer</a> minus the navbar.</p>
   </div>
 </main>
 
-<?php if ($mostrar_cookies == true) { ?>
 <footer class="footer mt-auto py-3 bg-light">
   <div class="container">
-    <span class="text-muted">
-      Debes aceptar la política de COOKIES
-      <a class="btn btn-primary" href="?aceptado=1">Acepto</a>
+    <span class="text-muted">  
+
+      <?php if ($_COOKIE['micookie'] == "yes" ) { ?>
+
+          <p><b>Has aceptado las cookies</b></p>
+
+        </form>
+
+        <?php } else { ?>
+
+          <form method="post" index="src/index.php">
+          <h5>DESEAS ACEPTAR LAS COOKIES?<h5>
+          <input type="submit" name="aceptar_cookies" value="aceptar">
+
+      <?php }?>
+
+
     </span>
   </div>
 </footer>
-<?php } ?>
 
     <script src="js/bootstrap.min.js"></script>
       
