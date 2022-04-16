@@ -1,0 +1,23 @@
+table {
+    padding-left: 5px;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid #000;
+ }
+ th, td {
+    width: 10%;
+    text-align: center;
+    vertical-align: top;
+    border: 1px solid #000;
+    padding: 0.2em;
+ }
+ th {
+    background: #eee;
+ }
+
+#tabla_listado {
+
+    text-align: center;
+
+}
